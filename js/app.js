@@ -1,3 +1,5 @@
+'use strict';
+
 $(document).ready(function () {
     var 
         $input =                $('#location-input'),
@@ -9,6 +11,8 @@ $(document).ready(function () {
         $optOpener =            $('#options-opener'),
         $optContainer =         $('#options-container'),
         $optForm =              $('#options-form'),
+        
+        $freeTextOnly =         $('#free-text-only'),
         $freeTextInput =        $('#free-text-input'),
         $tagsInput =            $('#tags-input'),
         $sortType =             $('#sort-type-select'),
@@ -25,6 +29,7 @@ $(document).ready(function () {
                                     format: 'json',
                                     nojsoncallback: '1',
                                     photos: {
+                                        textOnly: false,
                                         text: '',
                                         tags: '',
                                         sort: '',
@@ -165,7 +170,7 @@ $(document).ready(function () {
      * Initiate a new search when a location is set
      * */
     function initResearch () {
-        if (!currentLocation)
+        if (!validateResearch())
             return;
         
         currentPage = 1;
@@ -174,6 +179,14 @@ $(document).ready(function () {
         $pictures.children().children().remove();
         
         getPictures();
+    }
+    
+    /**
+     * Helper function to validate a research before requesting the API
+     * */
+    function validateResearch () {
+        return  !!currentLocation || 
+                config.photos.textOnly && config.photos.text;
     }
 
     /**
@@ -189,11 +202,11 @@ $(document).ready(function () {
                     '&format=' + config.format +
                     '&nojsoncallback=' + config.nojsoncallback + 
                     '&per_page=' + config.photos.per_page +
-                    (!!config.photos.text ? '&text=' + config.photos.text : '') +
-                    (!!config.photos.sort ? '&sort=' + config.photos.sort : '') +
-                    (!!config.photos.tags ? '&tags=' + config.photos.tags : '') +
                     '&page=' + (currentPage++) +
-                    '&place_id=' + currentLocation;
+                    (!config.photos.textOnly ?  '&place_id=' +  currentLocation : '') +
+                    (!!config.photos.text ?     '&text=' +      config.photos.text : '') +
+                    (!!config.photos.sort ?     '&sort=' +      config.photos.sort : '') +
+                    (!!config.photos.tags ?     '&tags=' +      config.photos.tags : '');
 
         isLoadingPictures = true;
         $preloaderPics.show();
@@ -215,8 +228,8 @@ $(document).ready(function () {
         res.photos.photo.forEach(function(photo) {
             var 
                 flickrSource = 'https://farm' + photo.farm + '.staticflickr.com/' + photo.server + '/' + photo.id + '_' + photo.secret,
-                flickrSourceSmall = flickrSource + '_n.jpg',
-                flickrSource = flickrSource + '.jpg';
+                flickrSourceSmall = flickrSource + '_z.jpg',
+                flickrSource = flickrSource + '_z.jpg';
                 
             if (!!photo.ispublic) {
                 var
@@ -256,6 +269,17 @@ $(document).ready(function () {
                         }
                         
                         $div.appendTo($('#location-pictures' + getLowestColumn()));
+                        $link.magnificPopup({
+                            type: 'image',
+                            zoom: {
+                                enabled: true,
+                                duration: 300,
+                                easing: 'ease-in-out',
+                                opener: function (elt) {
+                                    return elt.find('img');
+                                }
+                            }
+                        });
                     });
                     
                 $img.error(
@@ -277,7 +301,7 @@ $(document).ready(function () {
     $(document).scroll(function(e) {
         var scrollDiff = $(document).height() - $(window).height() - $(this).scrollTop();
 
-        if (!!currentLocation && scrollDiff < 30)
+        if (validateResearch() && scrollDiff < 30)
             getPictures();
     });
     
@@ -297,6 +321,20 @@ $(document).ready(function () {
         function (e) {
            e.preventDefault();
            initResearch();
+        });
+  
+    $freeTextOnly.click(
+        function () {
+            $(this).toggleClass('disabled');
+        
+            if (config.photos.textOnly)
+                $(this).text('Disabled');
+            else
+                $(this).text('Enabled');
+            
+            config.photos.textOnly = !config.photos.textOnly;
+            
+            $optForm.submit();
         });
     
     $freeTextInput.change(

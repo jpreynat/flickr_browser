@@ -5,6 +5,8 @@
   <link href="//fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet" />
   <link href="//fonts.googleapis.com/css?family=Raleway:300" rel="stylesheet" />
   <link href="//fonts.googleapis.com/css?family=Averia+Sans+Libre" rel="stylesheet" />
+    
+  <link rel="stylesheet" href="css/magnific-popup.css"> 
   <link rel="stylesheet" href="css/bootstrap.min.css" />
   <link rel="stylesheet" href="css/app.css" />
 </head>
@@ -26,6 +28,13 @@
   <div id="options-row" class="row">
     <div id="options-container" class="col-sm-5 col-sm-offset-7 text-right">
       <form id="options-form" class="form-horizontal">
+        <div id="free-text-only-form" class="form-group">
+          <label for="free-text-only-input" class="col-sm-4 control-label">Text search only</label>
+          <div class="col-sm-8 text-left">
+            <input id="free-text-only-input" class="option disabled" />
+            <label id="free-text-only" class="option disabled">Disabled</label>
+          </div>
+        </div>
         <div id="free-text-form" class="form-group">
           <label for="free-text-input" class="col-sm-4 control-label">Free text</label>
           <div class="col-sm-8">
@@ -74,6 +83,7 @@
 </div>
 
 <script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>

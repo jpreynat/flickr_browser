@@ -10,6 +10,11 @@ body {
 /****************************************
  *  Main input
 **/
+#location-input-row {
+  position: relative;
+  z-index: 50;
+}
+
 #location-input-container {
   position: relative;
   z-index: 50;
@@ -77,29 +82,36 @@ body {
   
   cursor: pointer;
   
-  -webkit-transform: translateZ(0);
-  -webkit-transform: rotate(0deg);
-  -moz-transform: rotate(0deg);
-  -ms-transform: rotate(0deg);
-  transform: rotate(0deg);
+  -webkit-backface-visibility: hidden;
+  outline: 1px solid transparent;
   
-  -webkit-transition: all 1.6s ease-in-out;
-  -moz-transition: all 1.6s ease;
-  -ms-transition: all 1.6s ease;
-  transition: all 1.6s ease-in-out;
+  transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+  
+  transition: all 1s ease-in-out 0.6s;
+  -ms-transition: all 1s ease-in-out 0.6s;
+  -moz-transition: all 1s ease-in-out 0.6s;
+  -webkit-transition: all 1s ease-in-out 0.6s;
 }
 
 #options-opener.open {
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+
+  transition: all 1s ease-in-out;
+  -ms-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -webkit-transition: all 1s ease-in-out;
 }
 
 #options-row {
   height: 0px;
   
-  padding: 15px 0;
+  padding: 0;
 }
 
 #options-container {
@@ -107,24 +119,24 @@ body {
   z-index: 20;
   min-height: 100px;
   
-  margin-top: -55px;
+  margin-top: -165px;
   margin-bottom: 20px;
   
-  -webkit-transition: margin-top 1s ease-in-out 0.6s, opacity 0.6s ease-in-out;
-  -moz-transition: margin-top 1s ease-in-out 0.6s, opacity 0.6s ease-in-out;
-  -ms-transition: margin-top 1s ease-in-out 0.6s, opacity 0.6s ease-in-out;
   transition: margin-top 1s ease-in-out 0.6s, opacity 0.6s ease-in-out;
+  -ms-transition: margin-top 1s ease-in-out 0.6s, opacity 0.6s ease-in-out;
+  -moz-transition: margin-top 1s ease-in-out 0.6s, opacity 0.6s ease-in-out;
+  -webkit-transition: margin-top 1s ease-in-out 0.6s, opacity 0.6s ease-in-out;
 }
 
 #options-container.open {
   opacity: 1;
   
-  margin-top: 0;
+  margin-top: 15px;
   
-  -webkit-transition: margin-top 1s ease-in-out, opacity 0.6s ease-in-out 1s;
-  -moz-transition: margin-top 1s ease-in-out, opacity 0.6s ease-in-out 1s;
-  -ms-transition: margin-top 1s ease-in-out, opacity 0.6s ease-in-out 1s;
   transition: margin-top 1s ease-in-out, opacity 0.6s ease-in-out 1s;
+  -ms-transition: margin-top 1s ease-in-out, opacity 0.6s ease-in-out 1s;
+  -moz-transition: margin-top 1s ease-in-out, opacity 0.6s ease-in-out 1s;
+  -webkit-transition: margin-top 1s ease-in-out, opacity 0.6s ease-in-out 1s;
 }
 
 .form-group {
@@ -138,19 +150,40 @@ body {
   font-weight: 400;
 }
 
+#free-text-only-input {
+  display: none;
+}
+
+.form-group .option {
+  height: 40px;
+  
+  margin-bottom: 0;
+  padding-top: 7px;
+  
+  font-weight: 300;
+  
+  cursor: pointer;
+}
+
+.form-group .option.disabled {
+  color: #A9A9AB;
+}
+
 .form-group select,
 .form-group input {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  -ms-appearance: none;
   appearance: none;
+  -ms-appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  
   border: none;
   outline: none;
   background: none;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  -ms-box-shadow: none;
+  
   box-shadow: none;
+  -ms-box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
   
   height: 40px;
   
@@ -169,10 +202,10 @@ body {
 }
 
 .form-group select:focus {
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  -ms-box-shadow: none;
   box-shadow: none;
+  -ms-box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
   border: none;
 }
 
