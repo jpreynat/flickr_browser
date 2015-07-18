@@ -28,11 +28,10 @@
   <div id="options-row" class="row">
     <div id="options-container" class="col-sm-5 col-sm-offset-7 text-right">
       <form id="options-form" class="form-horizontal">
-        <div id="free-text-only-form" class="form-group">
-          <label for="free-text-only-input" class="col-sm-4 control-label">Text search only</label>
-          <div class="col-sm-8 text-left">
-            <input id="free-text-only-input" class="option disabled" />
-            <label id="free-text-only" class="option disabled">Disabled</label>
+        <div id="tags-form" class="form-group">
+          <label for="tags-input" class="col-sm-4 control-label">Tags</label>
+          <div class="col-sm-8">
+            <input id="tags-input" type="text" placeholder="happy, sunny, friends..." />
           </div>
         </div>
         <div id="free-text-form" class="form-group">
@@ -41,14 +40,8 @@
             <input id="free-text-input" type="text" placeholder="Central park..." />
           </div>
         </div>
-        <div id="tags-form" class="form-group">
-          <label for="tags-input" class="col-sm-4 control-label">Tags</label>
-          <div class="col-sm-8">
-            <input id="tags-input" type="text" placeholder="happy, sunny, friends..." />
-          </div>
-        </div>
         <div id="sort-type-form" class="form-group">
-          <label for="sort-type-select" class="col-sm-4 control-label">Sort by</label>
+          <label for="sort-type-select" class="col-sm-4 control-label">Sort criterion</label>
           <div class="col-sm-4">
             <select id="sort-type-select" class="form-control">
               <option value="">None</option>
@@ -63,6 +56,13 @@
               <option value="-desc">descending</option>
               <option value="-asc">ascending</option>
             </select>
+          </div>
+        </div>
+        <div id="free-text-only-form" class="form-group">
+          <label for="free-text-only-input" class="col-sm-4 control-label">Text search only</label>
+          <div class="col-sm-8 text-left">
+            <input id="free-text-only-input" class="option disabled" />
+            <label id="free-text-only" class="option disabled">Disabled</label>
           </div>
         </div>
       </form>
