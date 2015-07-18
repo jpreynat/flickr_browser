@@ -5,7 +5,21 @@ body {
   background: url('../img/crossword.png');
   
   image-rendering: optimizeQuality;
-} 
+}
+
+a {
+  color: rgb(118, 173, 199);
+  text-decoration: none;
+  font-size: 13px;
+}
+
+a:active {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
 
 /****************************************
  *  Main input

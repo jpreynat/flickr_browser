@@ -225,7 +225,7 @@ $(document).ready(function () {
             received = res.photos.photo.length,
             loaded = 0;
 
-        res.photos.photo.forEach(function(photo) {
+        res.photos.photo.forEach(function (photo) {
             var 
                 flickrSource = 'https://farm' + photo.farm + '.staticflickr.com/' + photo.server + '/' + photo.id + '_' + photo.secret,
                 flickrSourceSmall = flickrSource + '_z.jpg',
@@ -252,14 +252,22 @@ $(document).ready(function () {
                     
                     $div =      $('<div></div>', { 
                                     'class': 'location-picture' 
-                                });
-
-                $filter.appendTo($div);
+                                }),
+                    
+                    userQuery = 'https://api.flickr.com/services/rest/?method=flickr.people.getInfo' +
+                                '&api_key=' + config.api_key +
+                                '&format=' + config.format +
+                                '&nojsoncallback=' + config.nojsoncallback + 
+                                '&user_id=' + photo.owner;
                 
+                
+                //$filter.appendTo($div);
+
                 $img.appendTo($link);
                 $link.appendTo($div);
-                
+
                 $title.appendTo($div);
+
 
                 $img.load(
                     function () {
@@ -268,7 +276,20 @@ $(document).ready(function () {
                             $preloaderPics.hide();
                         }
                         
-                        $div.appendTo($('#location-pictures' + getLowestColumn()));
+                        $.get(userQuery,
+                            function (data) {
+                                var
+                                    $user =     $('<p></p>'),
+                                    $userLink = $('<a></a>', {
+                                                    'href': data.person.photosurl['_content'],
+                                                    'target': '_blank',
+                                                    'text': data.person.username['_content']
+                                                });
+                                $userLink.appendTo($user);
+                                $user.appendTo($div);
+                                $div.appendTo($('#location-pictures' + getLowestColumn()));
+                            });
+
                         $link.magnificPopup({
                             type: 'image',
                             zoom: {
@@ -281,14 +302,14 @@ $(document).ready(function () {
                             }
                         });
                     });
-                    
+
                 $img.error(
                     function () {
                         if (++loaded === received) {
                             isLoadingPictures = false;
                             $preloaderPics.hide();
                         }
-                            
+
                         console.log('error at retreiving img ' + flickrSourceSmall);
                     });
             }
