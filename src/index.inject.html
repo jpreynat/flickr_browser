@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf8" />
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet" />
+  <link href="//fonts.googleapis.com/css?family=Raleway:300" rel="stylesheet" />
+  <link href="//fonts.googleapis.com/css?family=Averia+Sans+Libre" rel="stylesheet" />
+  
+  <!-- inject:css -->
+  <!-- endinject -->
+</head>
+
+<body>
+<div class="container">
+  <div id="location-input-row" class="row">
+    <div id="location-input-container" class="col-xs-12">
+      <input type="text" id="location-input" placeholder="New York City, USA" />
+      <img id="options-opener" src="img/plus-icon.png" />
+      <div id="preloader-locations" class="preloader text-center">
+        <img src="img/preloader.gif" />
+      </div>
+      <ul id="results-container">
+      </ul>
+    </div>
+  </div>
+  
+  <div id="options-row" class="row">
+    <div id="options-container" class="col-sm-5 col-sm-offset-7 text-right">
+      <form id="options-form" class="form-horizontal">
+        <div id="tags-form" class="form-group">
+          <label for="tags-input" class="col-sm-4 control-label">Tags</label>
+          <div class="col-sm-8">
+            <input id="tags-input" type="text" placeholder="happy, sunny, friends..." />
+          </div>
+        </div>
+        <div id="free-text-form" class="form-group">
+          <label for="free-text-input" class="col-sm-4 control-label">Free text</label>
+          <div class="col-sm-8">
+            <input id="free-text-input" type="text" placeholder="Central park..." />
+          </div>
+        </div>
+        <div id="sort-type-form" class="form-group">
+          <label for="sort-type-select" class="col-sm-4 control-label">Sort criterion</label>
+          <div class="col-sm-4">
+            <select id="sort-type-select" class="form-control">
+              <option value="">None</option>
+              <option value="relevance">Relevance</option>
+              <option value="interestingness">Interestingness</option>
+              <option value="date-posted">Date posted</option>
+              <option value="date-taken">Date taken</option>
+            </select>
+          </div>
+          <div class="col-sm-4">
+            <select id="sort-order-select" class="form-control">
+              <option value="-desc">descending</option>
+              <option value="-asc">ascending</option>
+            </select>
+          </div>
+        </div>
+        <div id="free-text-only-form" class="form-group">
+          <label for="free-text-only-input" class="col-sm-4 control-label">Text search only</label>
+          <div class="col-sm-8 text-left">
+            <input id="free-text-only-input" class="option disabled" />
+            <label id="free-text-only" class="option disabled">Disabled</label>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  <div id="location-pictures-row" class="row">
+    <div id="location-pictures1" class="col-xs-4">
+    </div>
+    <div id="location-pictures2" class="col-xs-4">
+    </div>
+    <div id="location-pictures3" class="col-xs-4">
+    </div>
+  </div>
+  <div id="preloader-pictures" class="preloader text-center">
+    <img src="img/preloader.gif" />
+  </div>
+</div>
+
+<!-- inject:js -->
+<!-- endinject -->
+</body>
+</html>
