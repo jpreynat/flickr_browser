@@ -145,6 +145,8 @@ a:focus {
 }
 
 .form-group > label {
+  padding-top: 7px;
+  
   font-weight: 400;
 }
 
